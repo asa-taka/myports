@@ -15,6 +15,7 @@ Commands:
   dotfiles <subcommand>
           : management dotfiles, see 'myports dotfiles help'
   edit    : open myports directory by MYPORTS_EDTOR=${MYPORTS_EDITOR}
+  env     : show configurable ENVs
   init    : clean all registered contents
   sh      : enter myports shell by MYPORTS_SHELL=${MYPORTS_SHELL}
   pull    : pull updates to github
@@ -32,6 +33,12 @@ __EOM__
 
 myports-edit() {
   $MYPORTS_EDITOR $MYPORTS_DIR
+}
+
+myports-env() {
+  echo "MYPORTS_DIR    =${MYPORTS_DIR}"
+  echo "MYPORTS_SHELL  =${MYPORTS_SHELL}"
+  echo "MYPORTS_EDITOR =${MYPORTS_EDITOR}"
 }
 
 myports-init() {

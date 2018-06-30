@@ -21,18 +21,17 @@ myports init
 Use [myports](./myports) to management your contents.
 
 ```
-$ myports
-Management user personal dotfiles and scripts
 Usage: myports <command> ...
 
 Commands:
   bin <subcommand>
           : management scripts, see 'myports bin help'
-  commit  : 
   dotfiles <subcommand>
           : management dotfiles, see 'myports dotfiles help'
   edit    : open myports directory by MYPORTS_EDTOR=code
-  sh      : enter myports shell by MYPORTS_SH=bash
+  env     : show configurable ENVs
+  init    : clean all registered contents
+  sh      : enter myports shell by MYPORTS_SHELL=bash
   pull    : pull updates to github
   push    : push updates to github
   show-remote

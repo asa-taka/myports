@@ -12,6 +12,7 @@ Usage: myports <command> ...
 Commands:
   bin <subcommand>
           : management scripts, see 'myports bin help'
+  commit  : commit changes
   dotfiles <subcommand>
           : management dotfiles, see 'myports dotfiles help'
   edit    : open myports directory by MYPORTS_EDTOR=${MYPORTS_EDITOR}
@@ -28,6 +29,11 @@ __EOM__
 
 # Sub-commands
 # ------------
+
+myports-commit() {
+  myports-dotfiles commit
+  myports-bin commit
+}
 
 myports-edit() {
   $MYPORTS_EDITOR $MYPORTS_DIR

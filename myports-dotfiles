@@ -9,10 +9,11 @@ Usage: myports dotfiles <command> ...
 Commands:
   add <file>
           : register new dotfile
+  commit  : commit changes
   diff    : diff between preserved and installed
   install : make symlinks of all dotfiles 
-  list    : list dotfiles
-  rm <dotfile>
+  list    : list entries
+  rm <entry-name>
           : remove registered dotfile
 __EOM__
 }
@@ -26,6 +27,13 @@ dotfiles-add() {
   cd $MYPORTS_DIR
   git add dotfiles/$new_entry
   git commit -m "Add ${new_entry}"
+}
+
+dotfiles-commit() {
+  cd $MYPORTS_DIR
+  entries=$(git diff --name-only dotfiles | cut -sd / -f 2- | tr '\n' ' ')
+  git add dotfiles
+  git commit -m "Edit ${entries}"  
 }
 
 dotfiles-diff() {

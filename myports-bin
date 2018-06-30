@@ -8,12 +8,12 @@ Usage: myports bin <command> ...
 
 Commands:
   add <file>
-          : register new script
-  install : make symlinks of all dotfiles to MYPORTS_USER_BIN(=${MYPORTS_USER_BIN})
-  list    : list dotfiles
+          : register new script (with commit)
+  commit  : commit changes
+  list    : list entries
   path    : print path
-  rm <script>
-          : remove registered script
+  rm <entry-name>
+          : remove registered script (with commit)
 __EOM__
 }
 
@@ -26,6 +26,13 @@ bin-add() {
   cd $MYPORTS_DIR
   git add bin/$new_entry
   git commit -m "Add ${new_entry}"
+}
+
+bin-commit() {
+  cd $MYPORTS_DIR
+  entries=$(git diff --name-only bin | cut -sd / -f 2- | tr '\n' ' ')
+  git add bin
+  git commit -m "Edit ${entries}"  
 }
 
 bin-list() {

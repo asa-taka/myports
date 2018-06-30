@@ -75,6 +75,8 @@ Commands:
 Use [myports](./myports) to management your contents.
 
 ```
+$ myports
+Management user personal dotfiles and scripts
 Usage: myports <command> ...
 
 Commands:
@@ -86,8 +88,8 @@ Commands:
   env     : show configurable ENVs
   init    : clean all registered contents
   sh      : enter myports shell by MYPORTS_SHELL=bash
-  pull    : pull updates to github
-  push    : push updates to github
+  pull    : pull updates from remote
+  push    : push updates to remote
   show-remote
           : show remote information
 

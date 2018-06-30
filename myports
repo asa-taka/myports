@@ -52,7 +52,7 @@ myports-pull() {
 
 myports-push() {
   cd $MYPORTS_DIR
-  git pull
+  git push
 }
 
 myports-show-remote() {

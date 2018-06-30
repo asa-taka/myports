@@ -16,14 +16,20 @@ ln -s ~/.myports/myports* ~/bin
 myports init
 ```
 
+or you can select the other location to clone this repository.
+If you do so, set `MYPORTS_DIR` as the correct path you installed.
+
 ## How it works
+
+The aims of this tool is managing personal scripts and dotfiles
+in remote git repositories.
 
 ### bin
 
-```
-$ myports bin path
-/Users/asa-taka/.myports/bin
-```
+Managing home-made scripts well.
+
+Scripts are located on `$MYPORTS_DIR/bin` and it can be got by `myports bin path`.
+Following shows the other utilities.
 
 ```
 $ myports bin
@@ -41,7 +47,9 @@ Commands:
 
 ### dotfiles
 
-dotfiles turn into symlinks of git managed ones.
+Managing dotfiles under the `$HOME` directory.
+
+dotfiles turn into symlinks of ones which managed by this(or your) git repository.
 Once symlinks are created, you can sync your dotfiles easily.
 
 ```
@@ -49,6 +57,8 @@ $ myports dotfiles install
 Create symlinks...
 create /Users/asa-taka/.bash_profile -> /Users/asa-taka/.myports/dotfiles/.bash_profile
 ```
+
+Following shows the other utilities.
 
 ```
 $ myports dotfiles

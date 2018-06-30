@@ -1,0 +1,45 @@
+#! /bin/bash
+
+DOTFILES_DIR=$MYPORTS_DIR/dotfiles
+
+dotfiles-help() {
+cat << __EOM__
+Usage: myports dotfiles <command> ...
+Commands:
+  install : make symlinks of all dotfiles 
+  list    : list dotfiles
+__EOM__
+}
+
+# Sub-commands
+# ------------
+
+dotfiles-install() {
+  echo "Create symlinks..."
+  for f in $(dotfiles-list); do
+    echo "create $HOME/$f -> $DOTFILES_DIR/$f"
+    ln -s $DOTFILES_DIR/$f $HOME/$f
+  done
+}
+
+dotfiles-list() {
+  cd $DOTFILES_DIR
+  find . -type f | cut -sd / -f 2-
+}
+
+# Main Script
+# -----------
+
+subcommand=$1
+case $subcommand in
+    "" | "-h" | "--help")
+        dotfiles-help
+        ;;
+    *)
+        shift
+        dotfiles-${subcommand} $@
+        if [ $? = 127 ]; then
+          dotfiles-help
+        fi
+        ;;
+esac

@@ -1,0 +1,45 @@
+#! /bin/bash
+
+BIN_DIR=$MYPORTS_DIR/bin
+MYPORTS_USER_BIN=${MYPORTS_USER_BIN:-$HOME/bin}
+
+bin-help() {
+cat << __EOM__
+Usage: myports bin <command> ...
+Commands:
+  install : make symlinks of all dotfiles to MYPORTS_USER_BIN(=${MYPORTS_USER_BIN})
+  list    : list dotfiles
+  path    : print path
+Note:
+  Add 'export PATH=\$(myports bin path):\$PATH' to your profile to use your commands.
+__EOM__
+}
+
+# Sub-commands
+# ------------
+
+bin-list() {
+  cd $BIN_DIR
+  find . -type f | cut -sd / -f 2-
+}
+
+bin-path() {
+  echo $BIN_DIR
+}
+
+# Main Script
+# -----------
+
+subcommand=$1
+case $subcommand in
+    "" | "-h" | "--help")
+        bin-help
+        ;;
+    *)
+        shift
+        bin-${subcommand} $@
+        if [ $? = 127 ]; then
+          bin-help
+        fi
+        ;;
+esac

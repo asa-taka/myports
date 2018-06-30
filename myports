@@ -1,0 +1,60 @@
+#! /bin/bash
+
+export MYPORTS_DIR=${MYPORTS_DIR:-$HOME/.myports}
+export MYPORTS_EDITOR=${MYPORTS_EDITOR:-code}
+export MYPORTS_SHELL=${MYPORTS_SHELL:-bash}
+
+myports-help() {
+cat << __EOM__
+Usage: myports <command> ...
+Commands:
+  diff    : 
+  edit    : open myports directory by MYPORTS_EDTOR=${MYPORTS_EDITOR}
+  sh      : enter myports shell by MYPORTS_SH=${MYPORTS_SHELL}
+  pull    : pull updates to github
+  push    : push updates to github
+__EOM__
+
+echo; myports-bin help
+echo; myports-dotfiles help
+}
+
+# Sub-commands
+# ------------
+
+myports-edit() {
+  $MYPORTS_EDITOR $MYPORTS_DIR
+}
+
+myports-sh() {
+  echo "Enter ${MYPORTS_DIR}"
+  cd $MYPORTS_DIR
+  $MYPORTS_SHELL
+}
+
+myports-pull() {
+  cd $MYPORTS_DIR
+  git pull
+}
+
+myports-push() {
+  cd $MYPORTS_DIR
+  git pull
+}
+
+# Main Script
+# -----------
+
+subcommand=$1
+case $subcommand in
+    "" | "-h" | "--help")
+        myports-help
+        ;;
+    *)
+        shift
+        myports-${subcommand} $@
+        if [ $? = 127 ]; then
+          myports-help
+        fi
+        ;;
+esac

@@ -65,6 +65,7 @@ myports-push() {
 
 myports-show-remote() {
   cd $MYPORTS_DIR
+  git fetch
   git remote -v
   git diff origin/master
 }

@@ -11,6 +11,10 @@ Commands:
   install : make symlinks of all dotfiles to MYPORTS_USER_BIN(=${MYPORTS_USER_BIN})
   list    : list dotfiles
   path    : print path
+  register <file>
+          : register a script
+  rm <script>
+          : unregister a script
 __EOM__
 }
 
@@ -24,6 +28,14 @@ bin-list() {
 
 bin-path() {
   echo $BIN_DIR
+}
+
+bin-register() {
+  cp $1 $BIN_DIR
+}
+
+bin-rm() {
+  rm $BIN_DIR/$1
 }
 
 # Main Script

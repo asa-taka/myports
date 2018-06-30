@@ -31,10 +31,16 @@ bin-path() {
 
 bin-register() {
   cp $1 $BIN_DIR
+  new_entry=$(basename $1)
+  cd $MYPORTS_DIR
+  git add bin/$new_entry
+  git commit -m "Add ${new_entry}"
 }
 
 bin-rm() {
-  rm $BIN_DIR/$1
+  cd $MYPORTS_DIR
+  git rm $BIN_DIR/$1
+  git commit -m "Remove $1"
 }
 
 # Main Script

@@ -6,21 +6,34 @@ export MYPORTS_SHELL=${MYPORTS_SHELL:-bash}
 
 myports-help() {
 cat << __EOM__
+Management user personal dotfiles and scripts
 Usage: myports <command> ...
+
 Commands:
-  diff    : 
+  bin <subcommand>
+          : management scripts, see 'myports bin help'
+  commit  : 
+  dotfiles <subcommand>
+          : management dotfiles, see 'myports dotfiles help'
   edit    : open myports directory by MYPORTS_EDTOR=${MYPORTS_EDITOR}
   sh      : enter myports shell by MYPORTS_SH=${MYPORTS_SHELL}
   pull    : pull updates to github
   push    : push updates to github
-__EOM__
+  show-remote
+          : show remote information
 
-echo; myports-bin help
-echo; myports-dotfiles help
+Note:
+  Add 'export PATH=\$(myports bin path):\$PATH' to your profile to use your commands.
+__EOM__
 }
 
 # Sub-commands
 # ------------
+
+myports-commit() {
+  cd $MYPORTS_DIR
+  git commit -a -m 'myports commit'
+}
 
 myports-edit() {
   $MYPORTS_EDITOR $MYPORTS_DIR
@@ -40,6 +53,12 @@ myports-pull() {
 myports-push() {
   cd $MYPORTS_DIR
   git pull
+}
+
+myports-show-remote() {
+  cd $MYPORTS_DIR
+  git remote -v
+  git diff origin/master
 }
 
 # Main Script

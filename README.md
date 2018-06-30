@@ -20,24 +20,22 @@ Use [myports](./myports) to management your contents.
 
 ```
 $ myports
+Management user personal dotfiles and scripts
 Usage: myports <command> ...
+
 Commands:
-  diff    : 
+  bin <subcommand>
+          : management scripts, see 'myports bin help'
+  commit  : 
+  dotfiles <subcommand>
+          : management dotfiles, see 'myports dotfiles help'
   edit    : open myports directory by MYPORTS_EDTOR=code
   sh      : enter myports shell by MYPORTS_SH=bash
   pull    : pull updates to github
   push    : push updates to github
+  show-remote
+          : show remote information
 
-Usage: myports bin <command> ...
-Commands:
-  install : make symlinks of all dotfiles to MYPORTS_USER_BIN(=/Users/asa-taka/bin)
-  list    : list dotfiles
-  path    : print path
 Note:
   Add 'export PATH=$(myports bin path):$PATH' to your profile to use your commands.
-
-Usage: myports dotfiles <command> ...
-Commands:
-  install : make symlinks of all dotfiles 
-  list    : list dotfiles
 ```

@@ -5,7 +5,9 @@ DOTFILES_DIR=$MYPORTS_DIR/dotfiles
 dotfiles-help() {
 cat << __EOM__
 Usage: myports dotfiles <command> ...
+
 Commands:
+  diff    : diff between preserved and installed
   install : make symlinks of all dotfiles 
   list    : list dotfiles
 __EOM__
@@ -13,6 +15,12 @@ __EOM__
 
 # Sub-commands
 # ------------
+
+dotfiles-diff() {
+  for f in $(dotfiles-list); do
+    diff -u $DOTFILES_DIR/$f $HOME/$f
+  done
+}
 
 dotfiles-install() {
   echo "Create symlinks..."

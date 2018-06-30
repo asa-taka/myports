@@ -2,7 +2,9 @@
 
 My dotfiles and home-made scripts preserver.
 
-## [WIP] Installation
+All features are now __Work in Progress, don't use__.
+
+## Installation
 
 This tool uses git repository for contents presesrver.
 So before use this tool, you shoud fork this repository

@@ -7,14 +7,26 @@ cat << __EOM__
 Usage: myports dotfiles <command> ...
 
 Commands:
+  add <file>
+          : register new dotfile
   diff    : diff between preserved and installed
   install : make symlinks of all dotfiles 
   list    : list dotfiles
+  rm <dotfile>
+          : remove registered dotfile
 __EOM__
 }
 
 # Sub-commands
 # ------------
+
+dotfiles-add() {
+  cp -r $1 $DOTFILES_DIR
+  new_entry=$(basename $1)
+  cd $MYPORTS_DIR
+  git add dotfiles/$new_entry
+  git commit -m "Add ${new_entry}"
+}
 
 dotfiles-diff() {
   for f in $(dotfiles-list); do
@@ -33,14 +45,6 @@ dotfiles-install() {
 dotfiles-list() {
   cd $DOTFILES_DIR
   find . -type f | cut -sd / -f 2-
-}
-
-dotfiles-register() {
-  cp -r $1 $DOTFILES_DIR
-  new_entry=$(basename $1)
-  cd $MYPORTS_DIR
-  git add dotfiles/$new_entry
-  git commit -m "Add ${new_entry}"
 }
 
 bin-rm() {

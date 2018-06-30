@@ -7,18 +7,26 @@ cat << __EOM__
 Usage: myports bin <command> ...
 
 Commands:
+  add <file>
+          : register new script
   install : make symlinks of all dotfiles to MYPORTS_USER_BIN(=${MYPORTS_USER_BIN})
   list    : list dotfiles
   path    : print path
-  register <file>
-          : register a script
   rm <script>
-          : unregister a script
+          : remove registered script
 __EOM__
 }
 
 # Sub-commands
 # ------------
+
+bin-add() {
+  cp $1 $BIN_DIR
+  new_entry=$(basename $1)
+  cd $MYPORTS_DIR
+  git add bin/$new_entry
+  git commit -m "Add ${new_entry}"
+}
 
 bin-list() {
   cd $BIN_DIR
@@ -27,14 +35,6 @@ bin-list() {
 
 bin-path() {
   echo $BIN_DIR
-}
-
-bin-register() {
-  cp $1 $BIN_DIR
-  new_entry=$(basename $1)
-  cd $MYPORTS_DIR
-  git add bin/$new_entry
-  git commit -m "Add ${new_entry}"
 }
 
 bin-rm() {

@@ -43,13 +43,13 @@ $ myports bin
 Usage: myports bin <command> ...
 
 Commands:
+  add <file>
+          : register new script
   install : make symlinks of all dotfiles to MYPORTS_USER_BIN(=)
   list    : list dotfiles
   path    : print path
-  register <file>
-          : register a script
   rm <script>
-          : unregister a script
+          : remove registered script
 ```
 
 ### dotfiles
@@ -72,9 +72,13 @@ $ myports dotfiles
 Usage: myports dotfiles <command> ...
 
 Commands:
+  add <file>
+          : register new dotfile
   diff    : diff between preserved and installed
   install : make symlinks of all dotfiles 
   list    : list dotfiles
+  rm <dotfile>
+          : remove registered dotfile
 ```
 
 ## myports: the management command
@@ -94,12 +98,10 @@ Commands:
   edit    : open myports directory by MYPORTS_EDTOR=code
   env     : show configurable ENVs
   init    : clean all registered contents
+  log     : show commit log
   sh      : enter myports shell by MYPORTS_SHELL=bash
   pull    : pull updates from remote
   push    : push updates to remote
   show-remote
           : show remote information
-
-Note:
-  Add 'export PATH=$(myports bin path):$PATH' to your profile to use your commands.
 ```

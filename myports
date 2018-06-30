@@ -17,14 +17,12 @@ Commands:
   edit    : open myports directory by MYPORTS_EDTOR=${MYPORTS_EDITOR}
   env     : show configurable ENVs
   init    : clean all registered contents
+  log     : show commit log
   sh      : enter myports shell by MYPORTS_SHELL=${MYPORTS_SHELL}
   pull    : pull updates from remote
   push    : push updates to remote
   show-remote
           : show remote information
-
-Note:
-  Add 'export PATH=\$(myports bin path):\$PATH' to your profile to use your commands.
 __EOM__
 }
 
@@ -45,6 +43,11 @@ myports-init() {
   confirm 'This removes all registered contents. Are you sure to continue?'
   rm $MYPORTS_DIR/bin/*
   rm $MYPORTS_DIR/dotfiles/.*
+}
+
+myports-log() {
+  cd $MYPORTS_DIR
+  git log
 }
 
 myports-sh() {

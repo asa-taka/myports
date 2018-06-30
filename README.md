@@ -16,7 +16,51 @@ ln -s ~/.myports/myports* ~/bin
 myports init
 ```
 
-## Usage
+## How it works
+
+### bin
+
+```
+$ myports bin path
+/Users/asa-taka/.myports/bin
+```
+
+```
+$ myports bin
+Usage: myports bin <command> ...
+
+Commands:
+  install : make symlinks of all dotfiles to MYPORTS_USER_BIN(=)
+  list    : list dotfiles
+  path    : print path
+  register <file>
+          : register a script
+  rm <script>
+          : unregister a script
+```
+
+### dotfiles
+
+dotfiles turn into symlinks of git managed ones.
+Once symlinks are created, you can sync your dotfiles easily.
+
+```
+$ myports dotfiles install
+Create symlinks...
+create /Users/asa-taka/.bash_profile -> /Users/asa-taka/.myports/dotfiles/.bash_profile
+```
+
+```
+$ myports dotfiles
+Usage: myports dotfiles <command> ...
+
+Commands:
+  diff    : diff between preserved and installed
+  install : make symlinks of all dotfiles 
+  list    : list dotfiles
+```
+
+## myports: the management command
 
 Use [myports](./myports) to management your contents.
 

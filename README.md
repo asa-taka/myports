@@ -16,8 +16,15 @@ ln -s ~/.myports/myports* ~/bin
 myports init
 ```
 
-or you can select the other location to clone this repository.
-If you do so, set `MYPORTS_DIR` as the correct path you installed.
+And add following lines to your profile files.
+
+```
+# MYPORTS_DIR=~/your/custom/path/to/install
+export PATH=$(myports bin path):$PATH
+```
+
+You can select other location to clone this repository.
+If you do so, set `MYPORTS_DIR` for the path you installed.
 
 ## How it works
 

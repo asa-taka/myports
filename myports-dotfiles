@@ -35,6 +35,20 @@ dotfiles-list() {
   find . -type f | cut -sd / -f 2-
 }
 
+dotfiles-register() {
+  cp -r $1 $DOTFILES_DIR
+  new_entry=$(basename $1)
+  cd $MYPORTS_DIR
+  git add dotfiles/$new_entry
+  git commit -m "Add ${new_entry}"
+}
+
+bin-rm() {
+  cd $MYPORTS_DIR
+  git rm dotfiles/$1
+  git commit -m "Remove $1"
+}
+
 # Main Script
 # -----------
 

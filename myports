@@ -16,7 +16,7 @@ Commands:
           : management dotfiles, see 'myports dotfiles help'
   edit    : open myports directory by MYPORTS_EDTOR=${MYPORTS_EDITOR}
   init    : clean all registered contents
-  sh      : enter myports shell by MYPORTS_SH=${MYPORTS_SHELL}
+  sh      : enter myports shell by MYPORTS_SHELL=${MYPORTS_SHELL}
   pull    : pull updates to github
   push    : push updates to github
   show-remote

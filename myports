@@ -16,6 +16,7 @@ Commands:
   dotfiles <subcommand>
           : management dotfiles, see 'myports dotfiles help'
   edit    : open myports directory by MYPORTS_EDTOR=${MYPORTS_EDITOR}
+  init    : clean all registered contents
   sh      : enter myports shell by MYPORTS_SH=${MYPORTS_SHELL}
   pull    : pull updates to github
   push    : push updates to github
@@ -39,6 +40,12 @@ myports-edit() {
   $MYPORTS_EDITOR $MYPORTS_DIR
 }
 
+myports-init() {
+  confirm 'This removes all registered contents. Are you sure to continue?'
+  rm $MYPORTS_DIR/bin/*
+  rm $MYPORTS_DIR/dotfiles/.*
+}
+
 myports-sh() {
   echo "Enter ${MYPORTS_DIR}"
   cd $MYPORTS_DIR
@@ -59,6 +66,17 @@ myports-show-remote() {
   cd $MYPORTS_DIR
   git remote -v
   git diff origin/master
+}
+
+# Utilities
+# ---------
+
+confirm() {
+  read -p "$1 [y/N]: " -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    exit 0
+  fi
 }
 
 # Main Script

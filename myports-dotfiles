@@ -47,7 +47,7 @@ dotfiles-list() {
   find . -type f | cut -sd / -f 2-
 }
 
-bin-rm() {
+dotfiles-rm() {
   cd $MYPORTS_DIR
   git rm dotfiles/$1
   git commit -m "Remove $1"

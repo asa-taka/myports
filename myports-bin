@@ -1,7 +1,6 @@
 #! /bin/bash
 
 BIN_DIR=$MYPORTS_DIR/bin
-MYPORTS_USER_BIN=${MYPORTS_USER_BIN:-$HOME/bin}
 
 bin-help() {
 cat << __EOM__
